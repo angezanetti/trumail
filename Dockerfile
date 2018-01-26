@@ -14,12 +14,14 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
 RUN curl https://glide.sh/get | sh
 RUN	git clone --depth 1 --branch ${GIT_BRANCH} https://github.com/angezanetti/trumail.git $GOPATH/trumail
 
-WORKDIR $GOPATH
+WORKDIR $GOPATH/trumail
 
+RUN rm glide.lock && \
+	rm glide.yaml
 RUN glide cache-clear
 RUN	glide init --non-interactive
 RUN	glide install
-RUN	ls -all "$GOPATH/vendor"
+RUN	cp -R vendor/* /usr/lib/golang/src
 
-EXPOSE 8888
+EXPOSE 8000
 CMD go run "$GOPATH/trumail/main.go"
