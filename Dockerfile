@@ -5,18 +5,18 @@ LABEL maintainer "DI GREGORIO Nicolas <ndigregorio@ndg-consulting.tech>"
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
     GIT_BRANCH='master' \
-		GOPATH='/go' \
+    GOPATH='/go' \
     PATH="$GOPATH/bin:/usr/local/go/bin:$PATH"
 
 ### Install Application
-RUN	yum install -y epel-release && \
+RUN yum install -y epel-release && \
     yum update -y && \
     yum install -y golang && \
-		yum install -y gcc \
-		               glide \
-		               git \
-									 make \
-		&& \
+    yum install -y gcc \
+                   glide \
+                   git \
+                   make \
+    && \
     git clone --depth 1 https://github.com/ncopa/su-exec /tmp/su-exec && \
     cd /tmp/su-exec && \
     make && \
