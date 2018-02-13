@@ -137,7 +137,7 @@ if [ "${1}" == 'trumail' ]; then
   DockLog "Setting permission on ${GOPATH}/trumail"
   chown -R ${MYUSER} ${GOPATH}/trumail
   DockLog "Starting app: ${1}"
-  su-exec ${MYUSER} go run "$GOPATH/trumail/main.go"
+  exec su-exec ${MYUSER} go run "$GOPATH/trumail/main.go"
 else
   exec "$@"
 fi
