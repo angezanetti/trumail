@@ -139,5 +139,6 @@ if [ "${1}" == 'trumail' ]; then
   DockLog "Starting app: ${1}"
   exec su-exec ${MYUSER} go run "$GOPATH/trumail/main.go"
 else
+  DockLog "Starting app: ${@}"
   exec "$@"
 fi
